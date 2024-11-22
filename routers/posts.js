@@ -1,14 +1,15 @@
 const express = require('express');
-const posts = require('../immagini_e_posts/posts');
+const posts = require('../data/posts');
 const router = express.Router();
 const postController = require('../controllers/postController')
+const idToInt = require('../middlewares/idToIntMiddleware')
 
 // Rotte posts
 //index
 router.get('/', postController.index);
 
 //show
-router.get('/:id', postController.show);
+router.get('/:id',idToInt, postController.show);
 
 //store
 router.post('/', postController.store);
